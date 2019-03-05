@@ -5,6 +5,7 @@ using UnityEngine;
 public class newcode : MonoBehaviour
 {
     public int intel = 5;
+    public bool HitOnHead = true;
     float test() 
     {
         return 5.0f; 
@@ -15,6 +16,12 @@ public class newcode : MonoBehaviour
         switch (intel) {
             case 5:
                 print("Hello, good sir! Do you l,ike physics?");
+                if (HitOnHead)
+                {
+                    intel = 4;
+                    Greet();
+                    HitOnHead = false;
+                }
                 break;
 
             case 4:
@@ -47,6 +54,11 @@ public class newcode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.R)) {
+            intel++;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space)){
+            intel--;
+        }
     }
 }
