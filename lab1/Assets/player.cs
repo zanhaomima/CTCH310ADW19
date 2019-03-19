@@ -6,6 +6,17 @@ public class player : MonoBehaviour
 {
     public GameObject bullet;
     public Transform bulletsSpawn;
+    public AudioClip pewpew;
+
+    private AudioSource source;
+    private float vollowRage = 0.5f;
+    private float volHighRage = 1.0f;
+
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +39,7 @@ public class player : MonoBehaviour
     }
 
     void Fire() {
-
+        Pew();
         var newbullet = (GameObject)Instantiate(
             bullet,
             bulletsSpawn.position,
@@ -39,5 +50,10 @@ public class player : MonoBehaviour
 
         //Destory
         Destroy(newbullet, 2.0f);
+    }
+
+    void Pew() {
+        float vol = Random.Range(vollowRage,volHighRage);
+        source.PlayOneShot(pewpew,vol);
     }
 }
